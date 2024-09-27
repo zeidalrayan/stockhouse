@@ -100,6 +100,8 @@ const Dashboard = () => {
               <LoadingSkeleton />
               <LoadingSkeleton />
               <LoadingSkeleton />
+              <LoadingSkeleton />
+              <LoadingSkeleton />
             </>
           ) : (
             <>
