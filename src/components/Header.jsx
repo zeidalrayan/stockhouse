@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { FaBoxOpen, FaWarehouse } from "react-icons/fa";
-import { IoCloseSharp, IoStatsChart } from "react-icons/io5";
+import { IoCloseSharp } from "react-icons/io5";
 import { RiDashboardHorizontalFill } from "react-icons/ri";
 import { SiHackthebox } from "react-icons/si";
 import { useLocation, Link } from "react-router-dom";
+import { HiTemplate } from "react-icons/hi";
 
 export default function Drawer({ open = true, setopen }) {
   const { pathname } = useLocation();
@@ -72,7 +73,7 @@ export default function Drawer({ open = true, setopen }) {
               selected === "/semuabarang" && "bg-black bg-opacity-45"
             } p-2 rounded-lg`}
           >
-            <IoStatsChart /> Semua Barang
+            <HiTemplate /> Semua Barang
           </span>
         </Link>
       </div>
