@@ -20,7 +20,7 @@ const Tabelbarangd = () => {
         .select("*")
         .order("id", { ascending: false });
       setAllBarang(data);
-      setFilteredBarang(data); // Inisialisasi filteredBarang dengan semua barang
+      setFilteredBarang(data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -28,7 +28,6 @@ const Tabelbarangd = () => {
     }
   };
 
-  // Handler untuk memilih kategori barang
   const handleCategoryChange = (event) => {
     const selected = event.target.value;
     setSelectedCategory(selected);
@@ -37,9 +36,9 @@ const Tabelbarangd = () => {
       const filtered = allBarang.filter(
         (item) => item.jenis_barang.toLowerCase() === selected.toLowerCase()
       );
-      setFilteredBarang(filtered); // Set data yang difilter
+      setFilteredBarang(filtered);
     } else {
-      setFilteredBarang(allBarang); // Jika tidak ada kategori dipilih, tampilkan semua barang
+      setFilteredBarang(allBarang);
     }
   };
 
@@ -60,7 +59,7 @@ const Tabelbarangd = () => {
               <select
                 value={selectedCategory}
                 onChange={handleCategoryChange}
-                className="border border-gray-300 rounded-lg px-4 py-2"
+                className="border border-gray-300 bg-white text-black rounded-lg px-4 py-2"
               >
                 <option value="">Semua Jenis</option>
                 <option value="Makanan">Makanan</option>
@@ -74,7 +73,6 @@ const Tabelbarangd = () => {
             <ModalAddBarang isOpen={isOpen} onOpenChange={onOpenChange} />
           </div>
           <div className="flex w-full justify-center">
-            {/* Passing filteredBarang instead of allBarang */}
             <TablePaginate allBarang={filteredBarang} />
           </div>
         </section>

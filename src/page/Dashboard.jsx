@@ -109,13 +109,13 @@ const Dashboard = () => {
               <Card
                 keterangan="Total Makanan "
                 angka={countjenisbarang.Makanan}
-                chart={MdLocalDrink}
+                chart={MdLunchDining}
               />
 
               <Card
                 keterangan="Total Minuman  "
                 angka={countjenisbarang.Minuman}
-                chart={MdLunchDining}
+                chart={MdLocalDrink}
               />
               <Card
                 keterangan="Total alat  "
