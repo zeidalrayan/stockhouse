@@ -4,9 +4,10 @@ import { supabase } from "../../utils/SupaClient";
 import { Link, useParams } from "react-router-dom";
 import useformatrupiah from "../../hooks/useformatrupiah";
 import { Divider, Spinner } from "@nextui-org/react";
-import { Phone } from "@mui/icons-material";
+
 import { BiBuilding } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
+import { HiPhone } from "react-icons/hi";
 
 export const Detailbarang = () => {
   const [getbarangbyid, setgetbarangbyid] = useState({});
@@ -141,7 +142,7 @@ export const DetailSupplier = () => {
                 {getbarangbyid.nama_supplier}
               </h2>
               <h4 className="text-2xl   flex gap-5 max-lg:text-xl max-md:text-lg">
-                <Phone /> {getbarangbyid.no_hp}
+                <HiPhone /> {getbarangbyid.no_hp}
               </h4>
               <h4 className="text-xl place-items-center max-lg:text-lg capitalize flex gap-5 max-md:text-base">
                 <BiBuilding />

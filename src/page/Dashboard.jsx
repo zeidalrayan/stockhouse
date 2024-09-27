@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
-import Inventory2Icon from "@mui/icons-material/Inventory2";
-import LunchDiningIcon from "@mui/icons-material/LunchDining";
+
 import "../App.css";
-import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
+
 import { supabase } from "../utils/SupaClient";
 import LoadingSkeleton from "../components/next-ui/LoadingSkeleton";
 import Layout from "./Layout";
-import TakeoutDiningIcon from "@mui/icons-material/TakeoutDining";
-import BlenderIcon from "@mui/icons-material/Blender";
+
+import { FaBox } from "react-icons/fa";
+import { MdBlender, MdLocalDrink, MdLunchDining } from "react-icons/md";
+import { GrDropbox } from "react-icons/gr";
 
 const Dashboard = () => {
   const [barang, setbarang] = useState(0);
@@ -102,31 +103,27 @@ const Dashboard = () => {
             </>
           ) : (
             <>
-              <Card
-                angka={barang}
-                keterangan="Total Barang "
-                chart={Inventory2Icon}
-              />
+              <Card angka={barang} keterangan="Total Barang " chart={FaBox} />
               <Card
                 keterangan="Total Makanan "
                 angka={countjenisbarang.Makanan}
-                chart={LocalDrinkIcon}
+                chart={MdLocalDrink}
               />
 
               <Card
                 keterangan="Total Minuman  "
                 angka={countjenisbarang.Minuman}
-                chart={LunchDiningIcon}
+                chart={MdLunchDining}
               />
               <Card
                 keterangan="Total alat  "
                 angka={countjenisbarang.alat}
-                chart={BlenderIcon}
+                chart={MdBlender}
               />
               <Card
                 angka={supplierCount}
                 keterangan="Total Supplier"
-                chart={TakeoutDiningIcon}
+                chart={GrDropbox}
               />
             </>
           )}

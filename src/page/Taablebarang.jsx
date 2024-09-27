@@ -2,25 +2,44 @@ import React, { useEffect, useState } from "react";
 import Layout from "../page/Layout";
 import TablePaginate from "../components/Paginate";
 import { supabase } from "../utils/SupaClient";
-import { Button, Spinner, useDisclosure } from "@nextui-org/react";
+import { Button, Spinner, useDisclosure, Select } from "@nextui-org/react";
 import { ModalAddBarang } from "./barang/ModalAddBarang";
 
 const Tabelbarangd = () => {
   const [allBarang, setAllBarang] = useState([]);
+  const [filteredBarang, setFilteredBarang] = useState([]); // State untuk barang yang difilter
+  const [selectedCategory, setSelectedCategory] = useState(""); // State untuk menyimpan pilihan jenis barang
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [loading, setloading] = useState(true);
+  const [loading, setLoading] = useState(true);
+
   const getAllBarang = async () => {
-    setloading(true);
+    setLoading(true);
     try {
       const { data } = await supabase
         .from("barang")
         .select("*")
         .order("id", { ascending: false });
       setAllBarang(data);
+      setFilteredBarang(data); // Inisialisasi filteredBarang dengan semua barang
     } catch (error) {
       console.log(error);
     } finally {
-      setloading(false);
+      setLoading(false);
+    }
+  };
+
+  // Handler untuk memilih kategori barang
+  const handleCategoryChange = (event) => {
+    const selected = event.target.value;
+    setSelectedCategory(selected);
+
+    if (selected) {
+      const filtered = allBarang.filter(
+        (item) => item.jenis_barang.toLowerCase() === selected.toLowerCase()
+      );
+      setFilteredBarang(filtered); // Set data yang difilter
+    } else {
+      setFilteredBarang(allBarang); // Jika tidak ada kategori dipilih, tampilkan semua barang
     }
   };
 
@@ -28,21 +47,35 @@ const Tabelbarangd = () => {
     getAllBarang();
     document.getElementById("title").innerHTML = "Table Barang";
   }, []);
+
   return (
     <Layout>
       {loading ? (
-        <Spinner className=" flex flex-col justify-center h-full" />
+        <Spinner className="flex flex-col justify-center h-full" />
       ) : (
         <section id="table" className="p-8">
           <div className="flex justify-between mb-5">
             <h2 className="text-4xl font-bold">Table Barang</h2>
-            <Button onPress={onOpen} color="primary">
-              + Tambah Barang
-            </Button>
+            <div className="flex gap-3 max-lg:flex-col">
+              <select
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+                className="border border-gray-300 rounded-lg px-4 py-2"
+              >
+                <option value="">Semua Jenis</option>
+                <option value="Makanan">Makanan</option>
+                <option value="Minuman">Minuman</option>
+                <option value="Alat">Alat</option>
+              </select>
+              <Button onPress={onOpen} color="primary">
+                + Tambah Barang
+              </Button>
+            </div>
             <ModalAddBarang isOpen={isOpen} onOpenChange={onOpenChange} />
           </div>
-          <div className=" flex w-full justify-center">
-            <TablePaginate allBarang={allBarang} />
+          <div className="flex w-full justify-center">
+            {/* Passing filteredBarang instead of allBarang */}
+            <TablePaginate allBarang={filteredBarang} />
           </div>
         </section>
       )}
