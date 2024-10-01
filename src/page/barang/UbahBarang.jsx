@@ -273,7 +273,7 @@ export const UbahSupplier = () => {
               nama supplier
               <input
                 type="text"
-                name="nama_Supplier"
+                name="nama_supplier"
                 value={formEdit.nama_supplier}
                 onChange={handlechange}
                 className="form-input bg-white text-black border-2 border-gray-400 p-2"
