@@ -82,6 +82,13 @@ const Allbarang = () => {
                       <p>Alamat: {selectedItem.alamat}</p>
                     )}
                     {selectedItem?.email && <p>Email: {selectedItem.email}</p>}
+                    {selectedItem?.foto_barang && (
+                      <img
+                        src={selectedItem.foto_barang}
+                        alt={selectedItem.nama_barang}
+                        className="w-full h-32 object-contain"
+                      ></img>
+                    )}
                     {selectedItem?.harga && (
                       <p>Harga: {formatrupiah(selectedItem.harga)}</p>
                     )}
@@ -145,7 +152,7 @@ const Allbarang = () => {
                         src={barang.foto_barang}
                         alt={`${barang.nama_barang} photo`}
                         className="h-20 w-full object-contain mt-2 mb-4"
-                      />
+                      ></img>
                     )}
                     <h3 className="text-xl font-semibold">
                       {barang.nama_barang}
