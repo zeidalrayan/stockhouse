@@ -227,7 +227,7 @@ export const UbahSupplier = () => {
       const { data } = await supabase
         .from("suplier")
         .update({
-          nama_Supplier: formEdit.nama_Supplier,
+          nama_supplier: formEdit.nama_supplier,
           no_hp: formEdit.no_hp,
           alamat: formEdit.alamat,
           email: formEdit.email,
