@@ -81,6 +81,7 @@ const Allbarang = () => {
                     {selectedItem?.alamat && (
                       <p>Alamat: {selectedItem.alamat}</p>
                     )}
+                    {selectedItem?.no_hp && <p>No Hp: {selectedItem.no_hp}</p>}
                     {selectedItem?.email && <p>Email: {selectedItem.email}</p>}
                     {selectedItem?.foto_barang && (
                       <img
@@ -127,8 +128,9 @@ const Allbarang = () => {
                     <h3 className="text-xl font-semibold">
                       {suplier.nama_supplier}
                     </h3>
+                    <p>No hp: {suplier.no_hp}</p>
                     <p>Alamat: {trunscatetext(suplier.alamat, 30)}</p>
-                    <p>Email: {suplier.email}</p>
+                    <p>Email: {trunscatetext(suplier.email, 20)}</p>
                   </div>
                 ))
               ) : (
@@ -160,16 +162,6 @@ const Allbarang = () => {
                     <p>Harga: {formatrupiah(barang.harga)}</p>
                     <p>Stok: {barang.stok}</p>
                     <p>Deskripsi: {trunscatetext(barang.deskripsi, 50)}</p>
-                    {allSupliers.length > 0 && (
-                      <p>
-                        Suplier:{" "}
-                        {
-                          allSupliers.find(
-                            (suplier) => suplier.id === barang.suplier_id
-                          )?.nama_supplier
-                        }
-                      </p>
-                    )}
                   </div>
                 ))
               ) : (
