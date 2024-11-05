@@ -477,29 +477,25 @@ export const UbahProfile = () => {
       } else {
         const removeUrlImage = formEdit.avatar_url
           ? formEdit.avatar_url.replace(
-              "https://wciaxcvrseypqzeyfgjc.supabase.co/storage/v1/object/public/produk/foto_produk/",
+              "https://wciaxcvrseypqzeyfgjc.supabase.co/storage/v1/object/public/avatars/logo/",
               ""
             )
           : null;
 
         if (removeUrlImage) {
           const { error: deleteError } = await supabase.storage
-            .from("produk")
-            .remove([`foto_produk/${removeUrlImage}`]);
+            .from("avatars")
+            .remove([`logo/${removeUrlImage}`]);
 
           if (deleteError) throw deleteError;
         }
 
         const { data: updateImage, error: uploadError } = await supabase.storage
-          .from("produk")
-          .upload(
-            `foto_produk/${imagePrev.nextImage.name}`,
-            imagePrev.nextImage,
-            {
-              cacheControl: "3600",
-              upsert: true,
-            }
-          );
+          .from("avatars")
+          .upload(`logo/${imagePrev.nextImage.name}`, imagePrev.nextImage, {
+            cacheControl: "3600",
+            upsert: true,
+          });
 
         if (uploadError) throw uploadError;
 
@@ -507,7 +503,7 @@ export const UbahProfile = () => {
           .from("profiles")
           .update({
             ...formEdit,
-            avatar_url: `https://wciaxcvrseypqzeyfgjc.supabase.co/storage/v1/object/public/produk/foto_produk/${imagePrev.nextImage.name}`,
+            avatar_url: `https://wciaxcvrseypqzeyfgjc.supabase.co/storage/v1/object/public/avatars/logo/${imagePrev.nextImage.name}`,
           })
           .eq("id", user.id)
           .select("*");

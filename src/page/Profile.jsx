@@ -25,7 +25,7 @@ const Profile = () => {
               </button>
             </Link>
           </div>
-          <div className="flex flex-col place-items-center text-center justify-center gap-4 text-white justify-center">
+          <div className="flex flex-col place-items-center text-center  gap-4 text-white max-md:justify-center">
             <h2 className="text-2xl   font-semibold ">{username}</h2>
             <img
               src={avatar_url}
@@ -34,16 +34,16 @@ const Profile = () => {
             />
           </div>
           <div className=" flex flex-col gap-4 mt-6 text-white max-md:text-center">
-            <p className="flex place-items-center text-center justify-center gap-2">
+            <p className="flex place-items-center  max-md:justify-center gap-2">
               <IoPersonOutline />
               username
             </p>
             <p className="">{full_name}</p>
-            <p className=" flex place-items-center text-center justify-center gap-2">
+            <p className=" flex place-items-center max-md:justify-center gap-2">
               <MdOutlineMailOutline /> Email:
             </p>
             <p>{email}</p>
-            <p className=" flex place-items-center text-center justify-center gap-2">
+            <p className=" flex place-items-center text-center max-md:justify-center gap-2">
               <CiPhone /> no telepon
             </p>
             <p className="">{no_telp}</p>
